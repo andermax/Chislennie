@@ -55,8 +55,40 @@ public class Calculator{
 
         values = newValues;
 
-        values[1][0]
+        newValues[2][0] = values[1][0]*(-1 * values[2][1] / values[1][1]) + values[2][0];
+        newValues[2][1] = values[1][1]*(-1 * values[2][1] / values[1][1]) + values[2][1];
+        newValues[2][2] = values[1][2]*(-1 * values[2][1] / values[1][1]) + values[2][2];
+        newValues[2][3] = values[1][3]*(-1 * values[2][1] / values[1][1]) + values[2][3];
 
+        //values=newValues;
+        System.out.println(values[2][3]);
+
+
+        for(int i=1;i<n-1;i++){
+            int m=i;
+            for(int j=i+1;j<n;j++){
+                if (abs(values[m][i])< abs(values[j][i]))
+                    m=j;
+                else
+                    j++;
+                for(int k=i;k<n;k++){
+                    double c = values[m][k];
+                    values[m][k]=values[i][k];
+                    values[i][k]=c;
+                    k++;
+                    c=b[m];
+                    b[m]=b[i];
+                    b[i]=c;
+
+                }
+                for(j=i+1;j<n;j++){
+                    c=-values[j][i]/values[i][i];
+                    for (k=i+1;k<n;k++){
+                        values
+                    }
+                }
+            }
+        }
 
 
         return values;
