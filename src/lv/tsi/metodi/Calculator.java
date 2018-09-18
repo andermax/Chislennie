@@ -5,50 +5,58 @@ import lv.tsi.metodi.printers.IPrinter;
 import lv.tsi.metodi.readers.IReader;
 import lv.tsi.metodi.readers.PredefinedReader;
 
+import static java.lang.Math.*;
+
 public class Calculator{
 
-    private final IReader reader;
-    private final IPrinter printer;
 
-    public Calculator(final IReader reader,
-                      final IPrinter printer) {
-        this.reader = reader;
-        this.printer = printer;
-    }
-
-
-
-    public void sort(){
-        final double[][] values = reader.read();
-        final double[][] sortedValues  = null;
-        for (int i=0;i<values.length;i++){
-
-            if(values[i][i] > values[i][i+1]){
-                sortedValues[i] = values[i+1];
-            }
-            else sortedValues[i] = values[i];
-        }
-        
-
+    public Calculator() {
 
     }
-    public void methodGaussa(){
-            final double[][] values = reader.read();
 
-            final double calcValues[][] = values;
+        public double[][] sort(double[][] values){
 
+            boolean isSorted = false;
+            double[] buf = null;
+            while(!isSorted) {
+                isSorted = true;
+                for (int i = 0; i < values.length-1; i++) {
+                    if(values[i][0] < values[i+1][0]){
+                        isSorted = false;
 
-            for (int i=0;i<values.length;i++){
-
-                if(values[i][i] > values[i][i+1]){
-                    calcValues[i] = values[i+1];
+                        buf = values[i];
+                        values[i] = values[i+1];
+                        values[i+1] = buf;
+                    }
                 }
-                else calcValues[i] = values[i];
             }
+            return values;
+
+
+    }
+    public double[][] forwardGauss(double[][] values){
+        //razdelenie na matricu A i vector B
+        double[][] newValues = null;
+        int n = values.length;
+
+        newValues[1][0] = values[1][0]*(-1 * values[1][0] / values[0][0]);
+        newValues[1][1] = values[1][0]*(-1 * values[1][0] / values[0][0]);
 
 
 
-            printer.print(calcValues);
+
+
+        return values;
+
+    }
+    public double[][] backwardGauss(double[][] values){
+
+
+
+
+
+
+        return values;
 
     }
 
