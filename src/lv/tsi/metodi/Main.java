@@ -1,12 +1,9 @@
 package lv.tsi.metodi;
 
+import lv.tsi.metodi.Calculator.ICalculator;
+import lv.tsi.metodi.Calculator.Gauss;
 import lv.tsi.metodi.printers.ConsolePrinter;
 import lv.tsi.metodi.printers.IPrinter;
-import lv.tsi.metodi.readers.IReader;
-import lv.tsi.metodi.readers.PredefinedReader;
-
-import java.sql.Array;
-import java.util.Arrays;
 
 public class Main {
 
@@ -19,26 +16,35 @@ public class Main {
         };
 
 
-        for (int r = 0; r<values.length; r++){
-            System.out.println("");
-            for (int c = 0; c < values[0].length; c++){
-                System.out.print(values[r][c]+"  \t\t");
-            }
+
+       System.out.println(" ");
+
+
+      IPrinter printer = new ConsolePrinter();
+      Gauss calc = new Gauss();
+      Matrix mtx = new Matrix(values);
+
+
+     System.out.print("print values");
+     printer.print(mtx.getValues());
+
+       printer.print(mtx.getVectorB());
+
+        System.out.println("metof gaussa");
+       printer.print(calc.forward(mtx.getMtxA(),mtx.getVectorB()));
+
+
+
+
+
+
+
 
         }
-        System.out.println("\n metod printer");
-        IPrinter printer = new ConsolePrinter();
-        printer.print(values);
-
-        System.out.println("\n\n sort");
-        Calculator calc = new Calculator();
-
-
-        System.out.println("gauss");
-        printer.print(calc.forwardGauss(values));
 
     }
 
-}
+
+
 
 
